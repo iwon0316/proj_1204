@@ -1,0 +1,14 @@
+proj_12_03
+├─ docker-compose.yml       	# Docker 설정
+├─ Dockerfile               		# Docker 이미지 빌드 스크립트
+├─ requirements.txt         		# Python 패키지 목록
+├─ venv         			# 실행시킬 가상환경 venv 데이터
+├─ backend                  		# 백엔드 코드
+│   ├─ app.py
+│   ├─ image_filtering.py  		# 이미지 전처리 코드
+├─ frontend                 		# 프론트엔드 코드
+│   └─ UploadImage.js		# React.js 코드
+├─ input_data                     	# 테스트용 input 데이터 저장 디렉토리
+│   └─ input_images/       	# 샘플 이미지 파일
+├─ output_data                     	# 테스트용 output 데이터 저장 디렉토리
+│   └─ output_images/       	# 결과 이미지 파일

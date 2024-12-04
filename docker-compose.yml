@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./input_data:/app/input_data
+      - ./output_data:/app/output_data
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+      - IMAGE_INPUT_PATH=/app/input_data/input_images
+      - IMAGE_OUTPUT_PATH=/app/output_data/output_images
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000/filter/
+    depends_on:
+      - backend
+volumes:
+  mongo_data:

@@ -1,0 +1,7 @@
+python -m venv venv 				# 가상환경 생성
+venv\Scripts\activate 				# 가상환경 실행 
+pip install -r requirements.txt			# 필요 라이브러리 설치
+set MONGO_URI=mongodb://localhost:27017/		# mongodb port 지정
+set IMAGE_INPUT_PATH=input_data\원하는사진		# 넣을 데이터 지정 	
+set IMAGE_OUTPUT_PATH=output_data\sample_leaf.jpg	# 결과 데이터 지정
+python backend\image_filtering.py			# 파이썬 파일 실행
